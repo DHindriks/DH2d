@@ -65,13 +65,15 @@ add_library(common
 	common/renderer.cpp
 	common/sprite.h
 	common/sprite.cpp
+	common/pointx.h
+	common/vectorx.h
+	common/entity.cpp
+	common/entity.h
 )
 
 # Demo
 add_executable(demo
 	demo/demo.cpp
-	demo/pointx.h
-	demo/vectorx.h
 )
 target_link_libraries(demo
 	common

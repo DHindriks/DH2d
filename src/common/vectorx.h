@@ -13,7 +13,7 @@
 #define VECTORX_H_
 
 #include <cmath>
-#include <rt2d/pointx.h>
+#include <common/pointx.h>
 
 /**
  * @brief pi (180 deg)
