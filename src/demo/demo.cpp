@@ -12,12 +12,15 @@ int main( void )
 {
 	Renderer renderer(1280, 720);
 
-	Sprite* pencils = new Sprite("assets/pencils.tga");
-	Sprite* kingkong = new Sprite("assets/kingkong.tga");
-	Sprite* rgba = new Sprite("assets/rgba.tga");
+
+	Sprite* pencils = new Sprite("assets/endpoint.tga");
+	Sprite* kingkong = new Sprite("assets/spaceship.tga");
+	Sprite* rgba = new Sprite("assets/rock.tga");
+	//Entity* spaceship = new Entity();
 
 	float rot_z = 0.0f;
-
+	glm::vec3 position = glm::vec3(900, 400, 0);
+	float rotation = 0.0f;
 	do {
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -30,12 +33,28 @@ int main( void )
 
 		// Render all Sprites (Sprite*, xpos, ypos, xscale, yscale, rotation)
 		renderer.renderSprite(pencils, 400, 300, 1.0f, 1.0f, 0.0f);
-		renderer.renderSprite(kingkong, 900, 400, 1.0f, 1.0f, 0.0f);
-		renderer.renderSprite(rgba, renderer.width()/2, renderer.height()/2, 3.0f, 3.0f, rot_z);
+		renderer.renderSprite(kingkong, position.x, position.y, 1.0f, 1.0f, rotation);
+		renderer.renderSprite(rgba, renderer.width()/2, renderer.height()/2, 3.0f, 3.0f, 0.0f);
 		rot_z += 0.03f;
 
 		if (glfwGetKey(renderer.window(), GLFW_KEY_W) == GLFW_PRESS) {
-			std::cout << "W pressed" << std::endl;
+			position.y -= 1;
+			std::cout << position.y << std::endl;
+		}
+
+		if (glfwGetKey(renderer.window(), GLFW_KEY_A) == GLFW_PRESS) {
+			rotation -= 0.01;
+			std::cout << position.y << std::endl;
+		}
+
+		if (glfwGetKey(renderer.window(), GLFW_KEY_S) == GLFW_PRESS) {
+			position.y += 1;
+			std::cout << position.y << std::endl;
+		}
+
+		if (glfwGetKey(renderer.window(), GLFW_KEY_D) == GLFW_PRESS) {
+			rotation += 0.01;
+			std::cout << position.y << std::endl;
 		}
 
 		// Swap buffers
